@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>TiDoFM package &#8212; TiDoFM v0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TiDoFM" href="modules.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="TiDoFM"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">TiDoFM v0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">TiDoFM</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">TiDoFM package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tidofm-package">
+<h1>TiDoFM package<a class="headerlink" href="#tidofm-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-TiDoFM.antenna_pattern_class">
+<span id="tidofm-antenna-pattern-class-module"></span><h2>TiDoFM.antenna_pattern_class module<a class="headerlink" href="#module-TiDoFM.antenna_pattern_class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="TiDoFM.antenna_pattern_class.AntennaPattern">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">TiDoFM.antenna_pattern_class.</span></span><span class="sig-name descname"><span class="pre">AntennaPattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.antenna_pattern_class.AntennaPattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>This class calculates the antenna pattern of a given detector.</strong></p>
+<p>Example usage of AntennaPattern class</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">antenna_pattern_class</span> <span class="kn">import</span> <span class="n">AntennaPattern</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Define source and detector parameters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">source_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ra&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;pol&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">detector_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Det&#39;</span><span class="p">:</span> <span class="s1">&#39;ET_1_10km_cryo&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GPST</span> <span class="o">=</span> <span class="mf">1234567890.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize the class</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ap</span> <span class="o">=</span> <span class="n">AntennaPattern</span><span class="p">(</span><span class="n">source_params</span><span class="p">,</span> <span class="n">detector_params</span><span class="p">,</span> <span class="n">GPST</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the antenna pattern</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fp</span><span class="p">,</span> <span class="n">Fc</span> <span class="o">=</span> <span class="n">ap</span><span class="o">.</span><span class="n">AP</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Print the results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fp =&#39;</span><span class="p">,</span> <span class="n">Fp</span><span class="p">,</span> <span class="s1">&#39;Fc =&#39;</span><span class="p">,</span> <span class="n">Fc</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.antenna_pattern_class.AntennaPattern.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.antenna_pattern_class.AntennaPattern.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_params</strong> (<em>dict</em>) – A dictionary that contains the source parameters. The keys are ‘ra’, ‘dec’, ‘pol’, and the values are floats.</p></li>
+<li><p><strong>detector_params</strong> (<em>dict</em>) – A dictionary that contains the detector parameters. The key is ‘Det’, and the value is a string that represents the detector name.</p></li>
+<li><p><strong>Default_source_params</strong> (<em>dict</em>) – {‘ra’: 0.27, ‘dec’: 0.31, ‘pol’: 0.0}.</p></li>
+<li><p><strong>Default_detector_params</strong> (<em>dict</em>) – {‘Det’:’ET_1_10km_cryo’}</p></li>
+<li><p><strong>GPST</strong> (<em>float</em>) – The GPS time in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If a given detector name is not in the list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.antenna_pattern_class.AntennaPattern.AP">
+<span class="sig-name descname"><span class="pre">AP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.antenna_pattern_class.AntennaPattern.AP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the antenna pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Fp</span></code>: The plus polarization of the antenna pattern.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fc</span></code>: The cross polarization of the antenna pattern.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.antenna_pattern_class.AntennaPattern.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.antenna_pattern_class.AntennaPattern.rotation_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the rotation matrix around a given axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis</strong> (<em>str</em>) – The axis of rotation. Only ‘x’, ‘y’, or ‘z’ are accepted.</p></li>
+<li><p><strong>angle</strong> (<em>float</em>) – The angle of rotation in radians.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The rotation matrix as a 3x3 nested list.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If an invalid rotation axis is given.</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ap</span> <span class="o">=</span> <span class="n">AntennaPattern</span><span class="p">({</span><span class="s1">&#39;ra&#39;</span><span class="p">:</span><span class="mf">0.27</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">:</span><span class="mf">0.31</span><span class="p">,</span> <span class="s1">&#39;pol&#39;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">},</span>
+<span class="go">                    {&#39;Det&#39;:&#39;ET_1_10km_cryo&#39;}, 1254355500.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ap</span><span class="o">.</span><span class="n">rotation_matrix</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="go">[[1.0, 0.0, 0.0],</span>
+<span class="go"> [0.0, 0.8775825618903728, 0.479425538604203],</span>
+<span class="go"> [0.0, -0.479425538604203, 0.8775825618903728]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-TiDoFM.fm_class">
+<span id="tidofm-fm-class-module"></span><h2>TiDoFM.fm_class module<a class="headerlink" href="#module-TiDoFM.fm_class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">TiDoFM.fm_class.</span></span><span class="sig-name descname"><span class="pre">FisherMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>This class implements a Fisher Matrix calculator for time domain gravitational wave signals.</strong></p>
+<p>Example usage of FisherMatrix class</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fm_class</span> <span class="kn">import</span> <span class="n">FisherMatrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta_param</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Mtot&#39;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="o">*</span><span class="n">lal</span><span class="o">.</span><span class="n">MSUN_SI</span><span class="p">,</span> <span class="s1">&#39;eta&#39;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="s1">&#39;ra&#39;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance_fm</span> <span class="o">=</span> <span class="n">fm_class</span><span class="o">.</span><span class="n">FisherMatrix</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">=</span> <span class="mi">4096</span><span class="p">,</span> <span class="n">segment_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">GPST</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">,</span> <span class="n">source_params</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">detector_params</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">delta_params</span><span class="o">=</span> <span class="n">delta_param</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># generate tested random signal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hp_sim_signal</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hc_sim_signal</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hp_M</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hc_M</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hp_eta</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hc_eta</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hp_ra</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hc_ra</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">2030</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">1e-23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig_dict</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;hp&#39;</span><span class="p">:</span><span class="n">hp_M</span><span class="p">,</span><span class="s1">&#39;hc&#39;</span><span class="p">:</span><span class="n">hc_M</span><span class="p">},{</span><span class="s1">&#39;hp&#39;</span><span class="p">:</span><span class="n">hp_eta</span><span class="p">,</span><span class="s1">&#39;hc&#39;</span><span class="p">:</span><span class="n">hc_eta</span><span class="p">},{</span><span class="s1">&#39;hp&#39;</span><span class="p">:</span><span class="n">hp_ra</span><span class="p">,</span><span class="s1">&#39;hc&#39;</span><span class="p">:</span><span class="n">hc_ra</span><span class="p">},{</span><span class="s1">&#39;hp&#39;</span><span class="p">:</span><span class="n">hp_sim_signal</span><span class="p">,</span><span class="s1">&#39;hc&#39;</span><span class="p">:</span><span class="n">hc_sim_signal</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">instance_fm</span><span class="o">.</span><span class="n">FM</span><span class="p">(</span><span class="n">signal_dict</span> <span class="o">=</span> <span class="n">sig_dict</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;fm&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;time_to_coalescence&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.MSUN">
+<span class="sig-name descname"><span class="pre">MSUN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1.9884099021470415e+30</span></em><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.MSUN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.RE">
+<span class="sig-name descname"><span class="pre">RE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">6378140.0</span></em><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.RE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample_rate</strong> (<em>float</em>) – The sampling rate of the gravitational wave data.</p></li>
+<li><p><strong>segment_size</strong> (<em>float</em>) – The duration of each segment in seconds in which the data is analyzed. For example, we use 100 seconds.</p></li>
+<li><p><strong>GPST</strong> (<em>float</em>) – The GPS time of the start of the gravitational wave data.</p></li>
+<li><p><strong>source_params</strong> (<em>dict</em>) – A dictionary of parameters describing the gravitational wave source.
+- <code class="docutils literal notranslate"><span class="pre">Mtot</span></code>: The total mass of the binary system emitting gravitational waves.
+- <code class="docutils literal notranslate"><span class="pre">eta</span></code>: The symmetric mass ratio of the binary system emitting gravitational waves.
+- <code class="docutils literal notranslate"><span class="pre">ra</span></code>: The right ascension of the source.
+- <code class="docutils literal notranslate"><span class="pre">dec</span></code>: The declination of the source.
+- <code class="docutils literal notranslate"><span class="pre">pol</span></code>: The polarization angle of the source.
+- <code class="docutils literal notranslate"><span class="pre">iota</span></code>: The inclination angle of the binary system’s orbital plane with respect to the line of sight.</p></li>
+<li><p><strong>detector_params</strong> (<em>dict</em>) – A dictionary of parameters describing the gravitational wave detector used to collect the data.
+- <code class="docutils literal notranslate"><span class="pre">Det</span></code>: The name of the gravitational wave detector used to collect the data.</p></li>
+<li><p><strong>Default_source_params</strong> (<em>dict</em>) – {‘Mtot’: 2.8*SNRCalculator.MSUN, ‘eta’: 0.25, ‘ra’: 0.27, ‘dec’: 0.31, ‘pol’: 0.0, ‘iota’: 0.78}</p></li>
+<li><p><strong>Default_detector_params</strong> (<em>dict</em>) – {‘Det’: ‘ET_1_10km_cryo’}</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.divide_signal">
+<span class="sig-name descname"><span class="pre">divide_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.divide_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function divides the gravitational wave data into segments of self.segment_size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>list</em>) – The gravitational wave data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dictionaries containing the start and end times and indices of each segment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.Ctime">
+<span class="sig-name descname"><span class="pre">Ctime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.Ctime" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the time to coalescence of the binary system given its total mass, 
+symmetric mass ratio, and minimum frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M_tot</strong> (<em>float</em>) – The total mass of the binary system emitting gravitational waves.</p></li>
+<li><p><strong>eta</strong> (<em>float</em>) – The symmetric mass ratio of the binary system emitting gravitational waves.</p></li>
+<li><p><strong>F_min</strong> (<em>float</em>) – The minimum frequency of the gravitational wave signal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The time to coalescence of the binary system.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.freq">
+<span class="sig-name descname"><span class="pre">freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_difference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the frequency of the gravitational wave signal at a given time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_difference</strong> (<em>float</em>) – The time difference between the start of the gravitational wave data and the start of the segment.</p></li>
+<li><p><strong>length</strong> (<em>float</em>) – The length of the gravitational wave data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The frequency of the gravitational wave signal at a given time.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.DetectorAngles">
+<span class="sig-name descname"><span class="pre">DetectorAngles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.DetectorAngles" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the detector info: 
+[laltitude, longitude, orientation of arms, angle between arms].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>str</em>) – The name of the detector.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.readnos">
+<span class="sig-name descname"><span class="pre">readnos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.readnos" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function reads the noise curve of the detector corresponding to frequency series f_points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f_points</strong> (<em>numpy.ndarray</em>) – The frequency series.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The noise curve of the detector corresponding to frequency series f_points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.delay">
+<span class="sig-name descname"><span class="pre">delay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the time delay between detector and earth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>GPST</strong> (<em>float</em>) – The GPS time.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The time delay between detector and earth.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.dhat">
+<span class="sig-name descname"><span class="pre">dhat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_earth</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.dhat" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the frequency domain strain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>GPST</strong> (<em>float</em>) – The GPS time.</p></li>
+<li><p><strong>hp</strong> (<em>numpy.ndarray</em>) – The plus polarization of the gravitational wave signal.</p></li>
+<li><p><strong>hc</strong> (<em>numpy.ndarray</em>) – The cross polarization of the gravitational wave signal.</p></li>
+<li><p><strong>Fp</strong> (<em>float</em>) – The plus polarization of the antenna pattern.</p></li>
+<li><p><strong>Fc</strong> (<em>float</em>) – The cross polarization of the antenna pattern.</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – The time resolution.</p></li>
+<li><p><strong>t_earth</strong> (<em>numpy.ndarray</em>) – The time series.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The frequency domain strain.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.FM">
+<span class="sig-name descname"><span class="pre">FM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.FM" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the Fisher matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signal_dict</strong> (<em>dict</em>) – The dictionary of the gravitational wave signal.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The dictionary of time to coalescence and the Fisher matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.fm_class.FisherMatrix.generate_signal">
+<span class="sig-name descname"><span class="pre">generate_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2030</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-23</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.fm_class.FisherMatrix.generate_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function generates a random signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal_duration</strong> (<em>float</em>) – The duration of the signal.</p></li>
+<li><p><strong>amplitude</strong> (<em>float</em>) – The amplitude of the signal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The random signal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-TiDoFM.snr_class">
+<span id="tidofm-snr-class-module"></span><h2>TiDoFM.snr_class module<a class="headerlink" href="#module-TiDoFM.snr_class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">TiDoFM.snr_class.</span></span><span class="sig-name descname"><span class="pre">SNRCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>This class implements an SNR (Signal-to-Noise Ratio) calculator for time domain gravitational wave signals.</strong></p>
+<p>Example usage of SNRCalculator class</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snr_class</span> <span class="kn">import</span> <span class="n">SNRCalculator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Define source and detector parameters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">source_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Mtot&#39;</span><span class="p">:</span> <span class="mf">2.8</span><span class="o">*</span><span class="n">SNRCalculator</span><span class="o">.</span><span class="n">MSUN</span><span class="p">,</span> <span class="s1">&#39;eta&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;ra&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">:</span> <span class="mf">0.31</span><span class="p">,</span> <span class="s1">&#39;pol&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;iota&#39;</span><span class="p">:</span> <span class="mf">0.78</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">detector_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Det&#39;</span><span class="p">:</span> <span class="s1">&#39;ET_1_10km_cryo&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GPST</span> <span class="o">=</span> <span class="mf">1234567890.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize the class</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">snr</span> <span class="o">=</span> <span class="n">SNRCalculator</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">=</span> <span class="mi">4096</span><span class="p">,</span> <span class="n">segment_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">GPST</span> <span class="o">=</span> <span class="n">GPST</span><span class="p">,</span> <span class="n">source_params</span> <span class="o">=</span> <span class="n">source_params</span><span class="p">,</span> <span class="n">detector_params</span> <span class="o">=</span> <span class="n">detector_params</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># generate the tested gravitational wave signal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simulated_signal</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">snr</span><span class="o">.</span><span class="n">generate_signal</span><span class="p">(</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">2030</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hp_hc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;hp&#39;</span><span class="p">:</span><span class="n">simulated_signal</span><span class="p">,</span> <span class="s1">&#39;hc&#39;</span><span class="p">:</span> <span class="n">simulated_signal</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the SNR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">snr_info</span> <span class="o">=</span> <span class="n">snr</span><span class="o">.</span><span class="n">calculate_snr</span><span class="p">(</span><span class="n">signal</span> <span class="o">=</span> <span class="n">hp_hc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Print the results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">snr_info</span><span class="p">[</span><span class="s1">&#39;time_to_coalescence&#39;</span><span class="p">],</span><span class="s1">&#39;SNR =&#39;</span><span class="p">,</span> <span class="n">snr_info</span><span class="p">[</span><span class="s1">&#39;snrs&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.MSUN">
+<span class="sig-name descname"><span class="pre">MSUN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1.9884099021470415e+30</span></em><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.MSUN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.RE">
+<span class="sig-name descname"><span class="pre">RE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">6378140.0</span></em><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.RE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample_rate</strong> (<em>float</em>) – The sampling rate of the gravitational wave data.</p></li>
+<li><p><strong>segment_size</strong> (<em>float</em>) – The duration of each segment in seconds in which the data is analyzed. For example, we use 100 seconds.</p></li>
+<li><p><strong>GPST</strong> (<em>float</em>) – The GPS time of the start of the gravitational wave data.</p></li>
+<li><p><strong>source_params</strong> (<em>dict</em>) – A dictionary of parameters describing the gravitational wave source.
+- <code class="docutils literal notranslate"><span class="pre">Mtot</span></code>: The total mass of the binary system emitting gravitational waves.
+- <code class="docutils literal notranslate"><span class="pre">eta</span></code>: The symmetric mass ratio of the binary system emitting gravitational waves.
+- <code class="docutils literal notranslate"><span class="pre">ra</span></code>: The right ascension of the source.
+- <code class="docutils literal notranslate"><span class="pre">dec</span></code>: The declination of the source.
+- <code class="docutils literal notranslate"><span class="pre">pol</span></code>: The polarization angle of the source.
+- <code class="docutils literal notranslate"><span class="pre">iota</span></code>: The inclination angle of the binary system’s orbital plane with respect to the line of sight.</p></li>
+<li><p><strong>detector_params</strong> (<em>dict</em>) – A dictionary of parameters describing the gravitational wave detector used to collect the data.
+- <code class="docutils literal notranslate"><span class="pre">Det</span></code>: The name of the gravitational wave detector used to collect the data.</p></li>
+<li><p><strong>Default_source_params</strong> (<em>dict</em>) – {‘Mtot’: 2.8*SNRCalculator.MSUN, ‘eta’: 0.25, ‘ra’: 0.27, ‘dec’: 0.31, ‘pol’: 0.0, ‘iota’: 0.78}</p></li>
+<li><p><strong>Default_detector_params</strong> (<em>dict</em>) – {‘Det’: ‘ET_1_10km_cryo’}</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.divide_signal">
+<span class="sig-name descname"><span class="pre">divide_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.divide_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function divides the gravitational wave data into segments of self.segment_size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>list</em>) – The gravitational wave data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dictionaries containing the start and end times and indices of each segment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.Ctime">
+<span class="sig-name descname"><span class="pre">Ctime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_min</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.Ctime" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the time to coalescence of the binary system given its total mass, 
+symmetric mass ratio, and minimum frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M_tot</strong> (<em>float</em>) – The total mass of the binary system emitting gravitational waves.</p></li>
+<li><p><strong>eta</strong> (<em>float</em>) – The symmetric mass ratio of the binary system emitting gravitational waves.</p></li>
+<li><p><strong>F_min</strong> (<em>float</em>) – The minimum frequency of the gravitational wave signal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The time to coalescence of the binary system.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.freq">
+<span class="sig-name descname"><span class="pre">freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_difference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the frequency of the gravitational wave signal at a given time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_difference</strong> (<em>float</em>) – The time difference between the start of the gravitational wave data and the start of the segment.</p></li>
+<li><p><strong>length</strong> (<em>float</em>) – The length of the gravitational wave data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The frequency of the gravitational wave signal at a given time.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.DetectorAngles">
+<span class="sig-name descname"><span class="pre">DetectorAngles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.DetectorAngles" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the detector info: 
+[laltitude, longitude, orientation of arms, angle between arms].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>str</em>) – The name of the detector.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.readnos">
+<span class="sig-name descname"><span class="pre">readnos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.readnos" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function reads the noise curve of the detector corresponding to frequency series f_points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f_points</strong> (<em>numpy.ndarray</em>) – The frequency series.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The noise curve of the detector corresponding to frequency series f_points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.delay">
+<span class="sig-name descname"><span class="pre">delay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the time delay between detector and earth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>GPST</strong> (<em>float</em>) – The GPS time.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The time delay between detector and earth.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.dhat">
+<span class="sig-name descname"><span class="pre">dhat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">GPST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_earth</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.dhat" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the frequency domain strain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>GPST</strong> (<em>float</em>) – The GPS time.</p></li>
+<li><p><strong>hp</strong> (<em>numpy.ndarray</em>) – The plus polarization of the gravitational wave signal.</p></li>
+<li><p><strong>hc</strong> (<em>numpy.ndarray</em>) – The cross polarization of the gravitational wave signal.</p></li>
+<li><p><strong>Fp</strong> (<em>float</em>) – The plus polarization of the antenna pattern.</p></li>
+<li><p><strong>Fc</strong> (<em>float</em>) – The cross polarization of the antenna pattern.</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – The time resolution.</p></li>
+<li><p><strong>t_earth</strong> (<em>numpy.ndarray</em>) – The time series.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The frequency domain strain.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.calculate_snr">
+<span class="sig-name descname"><span class="pre">calculate_snr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.calculate_snr" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculates the SNR of the signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>dict</em>) – The gravitational wave signal.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dict of (SNR, time to coalescence)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TiDoFM.snr_class.SNRCalculator.generate_signal">
+<span class="sig-name descname"><span class="pre">generate_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal_duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-23</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TiDoFM.snr_class.SNRCalculator.generate_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function generates a random signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal_duration</strong> (<em>float</em>) – The duration of the signal.</p></li>
+<li><p><strong>amplitude</strong> (<em>float</em>) – The amplitude of the signal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The random signal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-TiDoFM">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TiDoFM" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TiDoFM package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TiDoFM.antenna_pattern_class">TiDoFM.antenna_pattern_class module</a></li>
+<li><a class="reference internal" href="#module-TiDoFM.fm_class">TiDoFM.fm_class module</a></li>
+<li><a class="reference internal" href="#module-TiDoFM.snr_class">TiDoFM.snr_class module</a></li>
+<li><a class="reference internal" href="#module-TiDoFM">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">TiDoFM</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/TiDoFM.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="TiDoFM"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">TiDoFM v0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >TiDoFM</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">TiDoFM package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Ik Siong Heng, Man Leong Chan, Yufeng Li.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>
